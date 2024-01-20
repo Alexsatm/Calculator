@@ -11,3 +11,29 @@ calculator.addEventListener('click', (e) => {
         console.log(tempNumber);
     }
 })
+
+function operation(data) {
+    if (data > 0) {
+        operationType = 'number';
+        tempNumber = tempNumber + data;
+    }
+
+    if (data === 'float') {
+        operationType = 'number';
+        if(!/\./.test(tempNumber)) {
+            if(tempNumber) {
+                tempNumber = tempNumber + '';
+            } else {
+                tempNumber = '0'
+            }
+        }
+    }
+
+    if () {
+
+    }
+
+    if () {
+        
+    }
+}
