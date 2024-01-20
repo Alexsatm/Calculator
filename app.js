@@ -2,22 +2,25 @@ const calculator = document.querySelector('.calculator');
 let history = [];
 let tempNumber = '';
 let operationType = '';
+let isPersent = false;
+let isEqual = false;
 
 calculator.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('col')) {
         const data = target.dataset.type;
-        operation(data);
+        operationTypeHandling(data)
         renderTotal(tempNumber)
+        renderHistory(history)
     }
-
-    renderHistory(history)
 })
 
-function operation(data) {
+
+//Обработка клавиш нажатых на клавиатуре
+function operationTypeHandling(data) {
     if (data > 0) {
         operationType = 'number';
-        tempNumber = tempNumber + data;
+        tempNumber = tempNumber === '0' ? data: tempNumber + data;
     }
 
     if (data === 'float') {
@@ -32,7 +35,18 @@ function operation(data) {
     }
 
     if (data === 'delete' && operationType === 'number') {
-        tempNumber = tempNumber.substring(0, tempNumber.length - 1)
+        tempNumber = tempNumber.substring(0, tempNumber.length - 1);
+        tempNumber = tempNumber ? tempNumber: '0';
+    }
+
+    if (['+', '-', '/', '*'].includes(data) &&tempNumber) {
+        operationType = data;
+        history.push(tempNumber, operationType);
+        tempNumber = '';
+    }
+
+    if (data === 'clear') {
+        history = [];
     }
 
     if (data === '+' && tempNumber) {
@@ -96,6 +110,10 @@ function calculate(historyArray) {
 
                 if (prevItem === '*') {
                     total = total + item;
+                }
+
+                if (prevItem === '%') {
+                    total = total / 100 * item;
                 }
             }
         }
