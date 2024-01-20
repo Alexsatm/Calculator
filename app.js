@@ -1,4 +1,6 @@
 const calculator = document.querySelector('.calculator');
+const clear = document.getElementById('clear');
+let allHistory = [];
 let history = [];
 let tempNumber = '';
 let operationType = '';
@@ -9,15 +11,19 @@ calculator.addEventListener('click', (e) => {
     const target = e.target;
     if (target.classList.contains('col')) {
         const data = target.dataset.type;
-        operationTypeHandling(data)
-        renderTotal(tempNumber)
-        renderHistory(history)
+        const totalBlock = calculator.querySelector('.total');
+        const historyBlock = calculator.querySelector('.history')
+        operationTypeHandling(date);
+        totalBlock.innerHTML = tempNumber;
+        historyBlock.innerHTML = renderHistory(history)
+        historyPanelRender(allHistory);
     }
 })
 
 
 //Обработка клавиш нажатых на клавиатуре
 function operationTypeHandling(data) {
+    clear.innerHTML = 'C';
     if (data > 0) {
         operationType = 'number';
         tempNumber = tempNumber === '0' ? data: tempNumber + data;
@@ -53,12 +59,14 @@ function operationTypeHandling(data) {
     if (data === '%') {
         history.push(tempNumber);
         isPersent = true;
+        isEqual = false;
         tempNumber = calculate(history, isPersent, isEqual);
         history = [];
     }
 
     if(data === '=') {
         history.push(tempNumber);
+        isEqual = true;
         tempNumber = calculate(history, isPersent, isEqual);
         history = [];
        
@@ -77,6 +85,8 @@ function renderTotal(value) {
     totalBlock.innerHTML = value;
 }
 
+
+//форматирование HTML кода вывода блока истории операций
 function renderHistory(historyArray) {
     const historyBlock = calculator.querySelector('.history');
     let htmlElements = '';
