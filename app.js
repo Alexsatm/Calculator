@@ -1,5 +1,5 @@
 const calculator = document.querySelector('.calculator');
-const history = [];
+let history = [];
 let tempNumber = '';
 let operationType = '';
 
@@ -8,9 +8,10 @@ calculator.addEventListener('click', (e) => {
     if (target.classList.contains('col')) {
         const data = target.dataset.type;
         operation(data);
-        console.log(tempNumber);
         renderTotal(tempNumber)
     }
+
+    renderHistory(history)
 })
 
 function operation(data) {
@@ -68,18 +69,33 @@ function renderHistory(historyArray) {
     historyBlock.innerHTML = htmlElements;
 }
 
+//подчет конечного значения
 function calculate(historyArray) {
     let total = 0;
 
     historyArray.forEach((item, idx) => {
+        item = parseFloat(item)
         if(idx === 0) {
-            total = parseFloat(item)
+            total = item;
         }
 
         if(idx - 2 > 0) {
+            const prevItem= historyArray[idx - 1]
             if(item > 0) {
-                if(historyArray[idx - 1] === '+') {
-                    total = total+ parseFloat(item)
+                if (prevItem === '+') {
+                    total = total + item;
+                }
+
+                if (prevItem === '-') {
+                    total = total - item;
+                }
+
+                if (prevItem === '*') {
+                    total = total + item;
+                }
+
+                if (prevItem === '*') {
+                    total = total + item;
                 }
             }
         }
