@@ -9,6 +9,7 @@ calculator.addEventListener('click', (e) => {
         const data = target.dataset.type;
         operation(data);
         console.log(tempNumber);
+        renderTotal(tempNumber)
     }
 })
 
@@ -36,6 +37,11 @@ function operation(data) {
     if (data === '+' && tempNumber) {
         operationType = data;
         history.push(tempNumber, '+');
-        tempNumber = ''
+        tempNumber = '';
     }
+}
+
+function renderTotal(value) {
+    const totalBlock = calculator.querySelector('.total');
+    totalBlock.innerHTML = value;
 }
