@@ -1,7 +1,7 @@
 const calculator = document.querySelector('.calculator');
 const history = [];
 let tempNumber = '';
-let operationType;
+let operationType = '';
 
 calculator.addEventListener('click', (e) => {
     const target = e.target;
@@ -29,11 +29,13 @@ function operation(data) {
         }
     }
 
-    if () {
-
+    if (data === 'delete' && operationType === 'number') {
+        tempNumber = tempNumber.substring(0, tempNumber.length - 1)
     }
 
-    if () {
-        
+    if (data === '+' && tempNumber) {
+        operationType = data;
+        history.push(tempNumber, '+');
+        tempNumber = ''
     }
 }
