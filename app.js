@@ -45,3 +45,19 @@ function renderTotal(value) {
     const totalBlock = calculator.querySelector('.total');
     totalBlock.innerHTML = value;
 }
+
+function renderHistory(historyArray) {
+    const historyBlock = calculator.querySelector('.history');
+    let htmlElements = '';
+
+    historyArray.forEach((item) => {
+        if (item > 0) {
+            htmlElements = htmlElements + `<span>${item}</span>`
+        }
+
+        if (['+', '-', '/', '*'].includes(item)) {
+            htmlElements = htmlElements + `&nbsp<strong>${item}</strong>`;
+        }
+    });
+    historyBlock.innerHTML = htmlElements;
+}

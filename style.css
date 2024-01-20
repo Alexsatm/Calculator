@@ -47,11 +47,13 @@ body {
 .history strong {
     font-weight: 400;
     color: var(--accent);
+    height: 33px;
 }
 
 .total {
     font-size: 32px;
     font-weight: 600;
+    height: 42px;
 }
 
 .actions {
