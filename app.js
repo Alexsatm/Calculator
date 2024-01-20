@@ -47,6 +47,21 @@ function operationTypeHandling(data) {
 
     if (data === 'clear') {
         history = [];
+        tempNumber = '0'
+    }
+
+    if (data === '%') {
+        history.push(tempNumber);
+        isPersent = true;
+        tempNumber = calculate(history, isPersent, isEqual);
+        history = [];
+    }
+
+    if(data === '=') {
+        history.push(tempNumber);
+        tempNumber = calculate(history, isPersent, isEqual);
+        history = [];
+       
     }
 
     if (data === '+' && tempNumber) {
@@ -54,14 +69,9 @@ function operationTypeHandling(data) {
         history.push(tempNumber, '+');
         tempNumber = '';
     }
-
-    if(data === '=') {
-        history.push(tempNumber);
-        const total = calculate(history);
-        renderTotal(total)
-    }
 }
 
+//отрисовка текущего значения на экране калькулятора
 function renderTotal(value) {
     const totalBlock = calculator.querySelector('.total');
     totalBlock.innerHTML = value;
