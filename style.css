@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 :root {
     --primary: #00B0d7;
     --accent: #ff6060;
     --dark: #001b2f;
     --light: #fff;
+    --dispaly-dark: #00223a;
 }
 
 * {
@@ -16,12 +19,27 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: var(--light);
+    font-family: 'Poppins', sans-serif;
 }
 
 .canculator {
-
+    width: 320px;
+    border-radius: 20px;
+    background-color: var(--dark);
+    overflow: hidden;
 }
 
 .display {
+    padding: 20px 24px;
+    background-color: var(--dispaly-dark);
+}
 
+.history {
+    font-size: 24px;
+}
+
+.total {
+    font-size: 32px;
+    font-weight: 600;
 }
