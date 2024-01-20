@@ -1,5 +1,27 @@
+:root {
+    --primary: #00B0d7;
+    --accent: #ff6060;
+    --dark: #001b2f;
+    --light: #fff;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.canculator {
+
+}
+
+.display {
+
 }
