@@ -6,6 +6,8 @@
     --dark: #001b2f;
     --light: #fff;
     --dispaly-dark: #00223a;
+    --actions-light:#e9f6ff;
+    --actions-dark:#001b2f;
 }
 
 * {
@@ -33,13 +35,23 @@ body {
 .display {
     padding: 20px 24px;
     background-color: var(--dispaly-dark);
+    text-align: right;
 }
 
 .history {
     font-size: 24px;
 }
 
+.history strong {
+    font-weight: 400;
+    color: var(--accent);
+}
+
 .total {
     font-size: 32px;
     font-weight: 600;
+}
+
+.actions {
+    background-color: var(--dark);
 }
