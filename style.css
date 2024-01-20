@@ -34,6 +34,8 @@ body {
 
 .display {
     padding: 20px 24px;
+    padding-bottom: 44px;
+    margin-bottom: -24px;
     background-color: var(--dispaly-dark);
     text-align: right;
 }
@@ -53,5 +55,36 @@ body {
 }
 
 .actions {
+    padding: 16px;
+    padding-bottom: 32px;
     background-color: var(--dark);
+    border-radius: 20px;
+    font-size: 24px;
 }
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.col img {
+    width: 24px;
+}
+
+.reset{
+    color: var(--accent);
+}
+
+.action {
+    color: var(--primary);
+}
+
