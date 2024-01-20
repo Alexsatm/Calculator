@@ -39,6 +39,12 @@ function operation(data) {
         history.push(tempNumber, '+');
         tempNumber = '';
     }
+
+    if(data === '=') {
+        history.push(tempNumber);
+        const total = calculate(history);
+        renderTotal(total)
+    }
 }
 
 function renderTotal(value) {
@@ -60,4 +66,23 @@ function renderHistory(historyArray) {
         }
     });
     historyBlock.innerHTML = htmlElements;
+}
+
+function calculate(historyArray) {
+    let total = 0;
+
+    historyArray.forEach((item, idx) => {
+        if(idx === 0) {
+            total = parseFloat(item)
+        }
+
+        if(idx - 2 > 0) {
+            if(item > 0) {
+                if(historyArray[idx - 1] === '+') {
+                    total = total+ parseFloat(item)
+                }
+            }
+        }
+    })
+    return total;
 }
