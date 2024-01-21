@@ -23,8 +23,11 @@ calculator.addEventListener('click', (e) => {
 
 //Обработка клавиш нажатых на клавиатуре
 function operationTypeHandling(data) {
-    clear.innerHTML = 'C';
-    if (data > 0) {
+    if (data !== 'clear' & data !== 'history') {
+        clear.innerHTML = 'C';
+    }
+
+    if(data >= 0) {
         operationType = 'number';
         tempNumber = tempNumber === '0' ? data: tempNumber + data;
     }
@@ -33,9 +36,9 @@ function operationTypeHandling(data) {
         operationType = 'number';
         if(!/\./.test(tempNumber)) {
             if(tempNumber) {
-                tempNumber = tempNumber + '';
+                tempNumber = tempNumber + '.'
             } else {
-                tempNumber = '0'
+                tempNumber = '0.'
             }
         }
     }
@@ -43,17 +46,30 @@ function operationTypeHandling(data) {
     if (data === 'delete' && operationType === 'number') {
         tempNumber = tempNumber.substring(0, tempNumber.length - 1);
         tempNumber = tempNumber ? tempNumber: '0';
+        isPersent =false;
     }
 
-    if (['+', '-', '/', '*'].includes(data) &&tempNumber) {
+    if (['+', '-', '/', '*'].includes(data) && tempNumber) {
         operationType = data;
         history.push(tempNumber, operationType);
         tempNumber = '';
+        isPersent = false
     }
 
     if (data === 'clear') {
         history = [];
-        tempNumber = '0'
+        tempNumber = '0';
+        isPersent = false;
+        if(clear.innerText === 'C') {
+            clear.innerHTML = 'CA';
+        } else {
+            clear.innerHTML = 'C';
+            allHistory = []
+        }
+    }
+
+    if (data === 'history') {
+        openHistoryPanel()
     }
 
     if (data === '%') {
@@ -61,7 +77,6 @@ function operationTypeHandling(data) {
         isPersent = true;
         isEqual = false;
         tempNumber = calculate(history, isPersent, isEqual);
-        history = [];
     }
 
     if(data === '=') {
@@ -69,7 +84,6 @@ function operationTypeHandling(data) {
         isEqual = true;
         tempNumber = calculate(history, isPersent, isEqual);
         history = [];
-       
     }
 
     if (data === '+' && tempNumber) {
