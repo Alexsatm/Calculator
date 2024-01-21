@@ -84,7 +84,7 @@ body {
     top: 0;
 }
 
-calculator_history-content {
+.calculator_history-content {
     text-align: right;
 }
 
@@ -94,7 +94,7 @@ calculator_history-content {
     border-bottom: 1px solid var(--light);
 }
 
-calculator_history-close {
+.calculator_history-close {
     font-size: calc(20px / 1.4);
     cursor: pointer;
     position: absolute;

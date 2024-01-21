@@ -23,7 +23,7 @@ calculator.addEventListener('click', (e) => {
 
 //Обработка клавиш нажатых на клавиатуре
 function operationTypeHandling(data) {
-    if (data !== 'clear' & data !== 'history') {
+    if (data !== 'clear' && data !== 'history') {
         clear.innerHTML = 'C';
     }
 
@@ -46,7 +46,7 @@ function operationTypeHandling(data) {
     if (data === 'delete' && operationType === 'number') {
         tempNumber = tempNumber.substring(0, tempNumber.length - 1);
         tempNumber = tempNumber ? tempNumber: '0';
-        isPersent =false;
+        isPersent = false;
     }
 
     if (['+', '-', '/', '*'].includes(data) && tempNumber) {
@@ -97,7 +97,6 @@ function operationTypeHandling(data) {
 
 //форматирование HTML кода и вывода блока истории операций
 function renderHistory(historyArray) {
-    const historyBlock = calculator.querySelector('.history');
     let htmlElements = '';
 
     historyArray.forEach((item) => {
@@ -106,7 +105,7 @@ function renderHistory(historyArray) {
         }
 
         if (['+', '-', '/', '*', '%'].includes(item)) {
-            item = item === '+' ? '×': item === '/' ? '÷': item;
+            item = item === '*' ? '×': item === '/' ? '÷': item;
             htmlElements = htmlElements + `&nbsp;<strong>${item}</strong>`;
         }
     });
@@ -114,20 +113,18 @@ function renderHistory(historyArray) {
 }
 
 //Функция отрисовки всей истории в панео истории
-
 function historyPanelRender(allHistory) {
-    const historyContent = document.querySelector('calculator_history-content');
+    const historyContent = document.getElementById('history-content');
     let historyPanelHtml = '';
     allHistory.forEach((item) => {
         const html = `
             <div>
-                <div class="calculator_history">
+                <div class="history">
                     ${renderHistory(item[0])}
                 </div>
-                <div class="calculator_total">${item[1]}</div>
-            </div>
-        `
-        historyPanelHtml = historyPanelHtml + html
+                <div class="total">${item[1]}</div>
+            </div>`
+        historyPanelHtml = historyPanelHtml + html;
     })
 
     historyContent.innerHTML = historyPanelHtml;
@@ -153,9 +150,9 @@ function calculate(historyArray, isPersent, isEqual) {
                 total = calculatePersentWhenPushEqual(x, operation, n)
             }
 
-            if(idx - 2 >= 0) {
-                const prevItem= historyArray[idx - 1]
-            } if(item >= 0) {
+            if (idx - 2 >= 0) {
+            const prevItem = historyArray[idx - 1]
+            if(item >= 0) {
                 if (prevItem === '+') {
                     total = total + item;
                 }
@@ -175,7 +172,7 @@ function calculate(historyArray, isPersent, isEqual) {
                 if (prevItem === '%') {
                     total = total / 100 * item;
                 }
-            }
+            }}
         }
     })
     return String(total);
@@ -193,7 +190,7 @@ function calculatePersentWhenPushEqual(x, operation, n) {
     }
 
     if(operation === '*') {
-        total = x * (n / 100 / x)
+        total = x * (n / 100)
     }
 
     return total;
@@ -204,9 +201,10 @@ const historyPanel = document.getElementById('history-panel');
 const closeHistoryBtn = historyPanel.querySelector('#close');
 
 closeHistoryBtn.onclick = () => {
-    historyPanel.classList.remove('open')
+    historyPanel.classList.remove('open');
 }
 
+//функция открытия панели истории
 function openHistoryPanel () {
-    historyPanel.classList.add('open')
+    historyPanel.classList.add('open');
 }
