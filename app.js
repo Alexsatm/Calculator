@@ -80,41 +80,45 @@ function operationTypeHandling(data) {
     }
 
     if(data === '=') {
-        history.push(tempNumber);
+        const historySegment = [];
+        if(!isPersent) {
+            history.push(tempNumber)
+        }
+
+        historySegment.push(history)
         isEqual = true;
         tempNumber = calculate(history, isPersent, isEqual);
+        historySegment.push(tempNumber)
+        allHistory.push(historySegment)
         history = [];
-    }
-
-    if (data === '+' && tempNumber) {
-        operationType = data;
-        history.push(tempNumber, '+');
-        tempNumber = '';
+        isPersent = false;
     }
 }
 
-//отрисовка текущего значения на экране калькулятора
-function renderTotal(value) {
-    const totalBlock = calculator.querySelector('.total');
-    totalBlock.innerHTML = value;
-}
-
-
-//форматирование HTML кода вывода блока истории операций
+//форматирование HTML кода и вывода блока истории операций
 function renderHistory(historyArray) {
     const historyBlock = calculator.querySelector('.history');
     let htmlElements = '';
 
     historyArray.forEach((item) => {
-        if (item > 0) {
-            htmlElements = htmlElements + `<span>${item}</span>`
+        if (item >= 0) {
+            htmlElements = htmlElements + `&nbsp;<span>${item}</span>`
         }
 
-        if (['+', '-', '/', '*'].includes(item)) {
-            htmlElements = htmlElements + `&nbsp<strong>${item}</strong>`;
+        if (['+', '-', '/', '*', '%'].includes(item)) {
+            item = item === '+' ? '×': item === '/' ? '÷': item
+            htmlElements = htmlElements + `&nbsp;<strong>${item}</strong>`;
         }
     });
-    historyBlock.innerHTML = htmlElements;
+    return htmlElements
+}
+
+
+
+//отрисовка текущего значения на экране калькулятора
+function renderTotal(value) {
+    const totalBlock = calculator.querySelector('.total');
+    totalBlock.innerHTML = value;
 }
 
 //подчет конечного значения
