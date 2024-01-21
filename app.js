@@ -156,15 +156,8 @@ function calculate(historyArray, isPersent, isEqual) {
             }
 
             if(idx - 2 >= 0) {
-
-            }
-
-
-
-
-
-            const prevItem= historyArray[idx - 1]
-            if(item > 0) {
+                const prevItem= historyArray[idx - 1]
+            } if(item >= 0) {
                 if (prevItem === '+') {
                     total = total + item;
                 }
@@ -174,11 +167,11 @@ function calculate(historyArray, isPersent, isEqual) {
                 }
 
                 if (prevItem === '*') {
-                    total = total + item;
+                    total = total * item;
                 }
 
-                if (prevItem === '*') {
-                    total = total + item;
+                if (prevItem === '/') {
+                    total = total / item;
                 }
 
                 if (prevItem === '%') {
@@ -187,5 +180,23 @@ function calculate(historyArray, isPersent, isEqual) {
             }
         }
     })
+    return String(total);
+}
+
+//Пересчет процента, когда нажали равно, после нажатия процента
+function calculatePersentWhenPushEqual(x, operation, n) {
+    let total = 0;
+    if(operation === '+') {
+        total = x + (n / 100 * x)
+    }
+
+    if(operation === '-') {
+        total = x - (n / 100 * x)
+    }
+
+    if(operation === '*') {
+        total = x * (n / 100 / x)
+    }
+
     return total;
 }
