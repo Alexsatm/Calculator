@@ -134,14 +134,9 @@ function historyPanelRender(allHistory) {
     historyContent.innerHTML = historyPanelHtml;
 }
 
-//отрисовка текущего значения на экране калькулятора
-function renderTotal(value) {
-    const totalBlock = calculator.querySelector('.total');
-    totalBlock.innerHTML = value;
-}
 
 //подчет конечного значения
-function calculate(historyArray) {
+function calculate(historyArray, isPersent, isEqual) {
     let total = 0;
 
     historyArray.forEach((item, idx) => {
@@ -150,7 +145,24 @@ function calculate(historyArray) {
             total = item;
         }
 
-        if(idx - 2 > 0) {
+        if(idx - 2 >= 0 && isPersent && idx - 2 === historyArray.length - 3) {
+            const x = total;
+            const operation = historyArray[idx - 1];
+            const n = item;
+            if (!isEqual) {
+                total = canculatePersent(x, operation, n)
+            } else {
+                total = calculatePersentWhenPushEqual(x, operation, n)
+            }
+
+            if(idx - 2 >= 0) {
+
+            }
+
+
+
+
+
             const prevItem= historyArray[idx - 1]
             if(item > 0) {
                 if (prevItem === '+') {
