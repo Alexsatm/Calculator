@@ -116,7 +116,7 @@ function renderHistory(historyArray) {
 //Функция отрисовки всей истории в панео истории
 
 function historyPanelRender(allHistory) {
-    const historyContent = document.getElementById('history-content');
+    const historyContent = document.querySelector('calculator_history-content');
     let historyPanelHtml = '';
     allHistory.forEach((item) => {
         const html = `

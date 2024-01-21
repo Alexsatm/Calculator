@@ -67,7 +67,7 @@ body {
 
 .history-panel {
     position: absolute;
-    top: 70%;
+    top: 100%;
     right: 0;
     left: 0;
     display: flex;
@@ -77,12 +77,37 @@ body {
     height: 100%;
     background-color: var(--dark);
     color: var(--light);
+    transition: 0.5s;
+}
+
+.history-panel.open {
+    top: 0;
+}
+
+calculator_history-content {
+    text-align: right;
+}
+
+.calculator_history-content > div:not(:last-child) {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--light);
 }
 
 calculator_history-close {
-    font-size: calc(30px / 1.5);
-    width: 30px;
-
+    font-size: calc(20px / 1.4);
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    text-align: center;
+    line-height: calc(20px / 1.1);
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background-color: var(--dark);
 }
 
 .row {

@@ -16,7 +16,7 @@
         <div class="actions">
             <!-- 5 строк и 4 колонок-->
             <div class="row">
-                <div class="col reset" data-type="clear">C</div>
+                <div class="col reset" data-type="clear" id="clear">C</div>
                 <div class="col action" data-type="percent">%</div>
                 <div class="col action" data-type="delete">⌫</div>
                 <div class="col action" data-type="/">÷</div>
@@ -50,17 +50,8 @@
         </div>
 
          <div class="history-panel" id="history-panel">
-            <div class="calculator_history-content">
-                <div>
-                    <div class="history">
-                        <span>50</span>
-                        <strong>+</strong>
-                        <span>50</span>
-                    </div>
-                    <div class="total">0</div>
-                </div>
-            </div>
-            <div class="calculator_history-close">
+            <div class="calculator_history-content"></div>
+            <div class="calculator_history-close" id="close">
                 x
             </div>
          </div>
