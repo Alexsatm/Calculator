@@ -26,6 +26,7 @@ body {
 }
 
 .calculator {
+    position: relative;
     width: 320px;
     border-radius: 20px;
     background-color: var(--dark);
@@ -42,12 +43,12 @@ body {
 
 .history {
     font-size: 24px;
+    height: 33px;
 }
 
 .history strong {
     font-weight: 400;
     color: var(--accent);
-    height: 33px;
 }
 
 .total {

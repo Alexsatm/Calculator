@@ -2,7 +2,7 @@ const calculator = document.querySelector('.calculator');
 const clear = document.getElementById('clear');
 let allHistory = [];
 let history = [];
-let tempNumber = '';
+let tempNumber = ''; //хранить времменное значение
 let operationType = '';
 let isPersent = false;
 let isEqual = false;
@@ -13,7 +13,7 @@ calculator.addEventListener('click', (e) => {
         const data = target.dataset.type;
         const totalBlock = calculator.querySelector('.total');
         const historyBlock = calculator.querySelector('.history')
-        operationTypeHandling(date);
+        operationTypeHandling(data);
         totalBlock.innerHTML = tempNumber;
         historyBlock.innerHTML = renderHistory(history)
         historyPanelRender(allHistory);
@@ -36,9 +36,9 @@ function operationTypeHandling(data) {
         operationType = 'number';
         if(!/\./.test(tempNumber)) {
             if(tempNumber) {
-                tempNumber = tempNumber + '.'
+                tempNumber = tempNumber + '.';
             } else {
-                tempNumber = '0.'
+                tempNumber = '0.';
             }
         }
     }
@@ -53,7 +53,7 @@ function operationTypeHandling(data) {
         operationType = data;
         history.push(tempNumber, operationType);
         tempNumber = '';
-        isPersent = false
+        isPersent = false;
     }
 
     if (data === 'clear') {
@@ -64,7 +64,7 @@ function operationTypeHandling(data) {
             clear.innerHTML = 'CA';
         } else {
             clear.innerHTML = 'C';
-            allHistory = []
+            allHistory = [];
         }
     }
 
@@ -106,7 +106,7 @@ function renderHistory(historyArray) {
         }
 
         if (['+', '-', '/', '*', '%'].includes(item)) {
-            item = item === '+' ? '×': item === '/' ? '÷': item
+            item = item === '+' ? '×': item === '/' ? '÷': item;
             htmlElements = htmlElements + `&nbsp;<strong>${item}</strong>`;
         }
     });
@@ -127,13 +127,11 @@ function historyPanelRender(allHistory) {
                 <div class="calculator_total">${item[1]}</div>
             </div>
         `
-
         historyPanelHtml = historyPanelHtml + html
     })
 
     historyContent.innerHTML = historyPanelHtml;
 }
-
 
 //подчет конечного значения
 function calculate(historyArray, isPersent, isEqual) {
