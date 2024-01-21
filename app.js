@@ -200,3 +200,15 @@ function calculatePersentWhenPushEqual(x, operation, n) {
 
     return total;
 }
+
+//отрытие/скрытие панели истории
+const historyPanel = document.getElementById('history-panel');
+const closeHistoryBtn = historyPanel.querySelector('#close');
+
+closeHistoryBtn.onclick = () => {
+    historyPanel.classList.remove('open')
+}
+
+function openHistoryPanel () {
+    historyPanel.classList.add('open')
+}
