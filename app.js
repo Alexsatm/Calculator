@@ -113,7 +113,26 @@ function renderHistory(historyArray) {
     return htmlElements
 }
 
+//Функция отрисовки всей истории в панео истории
 
+function historyPanelRender(allHistory) {
+    const historyContent = document.getElementById('history-content');
+    let historyPanelHtml = '';
+    allHistory.forEach((item) => {
+        const html = `
+            <div>
+                <div class="calculator_history">
+                    ${renderHistory(item[0])}
+                </div>
+                <div class="calculator_total">${item[1]}</div>
+            </div>
+        `
+
+        historyPanelHtml = historyPanelHtml + html
+    })
+
+    historyContent.innerHTML = historyPanelHtml;
+}
 
 //отрисовка текущего значения на экране калькулятора
 function renderTotal(value) {
